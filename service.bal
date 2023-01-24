@@ -3,9 +3,8 @@ import ballerina/http;
 # A service representing a network-accessible API
 # bound to port `9090`.
 configurable float testValue = ?;
-configurable int portVal = ?;
 
-service / on new http:Listener(portVal) {
+service / on new http:Listener(9090) {
 
     # A resource for generating greetings
     # + name - the input string name
