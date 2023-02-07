@@ -24,4 +24,13 @@ service / on new http:Listener(9090) {
         return val;
 
     }
+
+    resource function get greeting2(string name) returns string|error {
+
+        if name is "" {
+            return error("name should not be empty!" + testValue.toString());
+        }
+        return "Hello, " + name + testValue.toString();
+
+    }
 }
