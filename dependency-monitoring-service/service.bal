@@ -1,7 +1,7 @@
 import ballerina/http;
 import ballerina/log;
 
-//import ballerinax/redis as _;
+import ballerinax/redis as _;
 
 service / on new http:Listener(9090) {
 
