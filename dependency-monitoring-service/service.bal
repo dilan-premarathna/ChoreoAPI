@@ -1,7 +1,8 @@
 import ballerina/http;
+import ballerina/log;
 import ballerinax/redis;
 
-//configurable RedisConfigurables redisConfigurables = ?;
+configurable RedisConfigurables redisConfigurables = ?;
 
 redis:ConnectionConfig redisConfig = {
     host: "FossaRedis-Test.redis.cache.windows.net:6380",
@@ -18,6 +19,8 @@ redis:ConnectionConfig redisConfig = {
 service / on new http:Listener(9090) {
 
     resource function get issues(string product, string productVersion) returns json|error? {
+
+        log:printInfo("service invoked");
 
         redis:Client conn = check new (redisConfig);
         string title = product + "-" + productVersion;
