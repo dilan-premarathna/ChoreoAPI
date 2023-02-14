@@ -2,11 +2,11 @@ import ballerina/http;
 
 # A service representing a network-accessible API
 # bound to port `9090`.
-configurable float testValue = ?;
+//configurable float testValue = ?;
 
-public type Amount record {
-    string Currency = "USD";
-};
+// public type Amount record {
+//     string Currency = "USD";
+// };
 
 service / on new http:Listener(9090) {
 
@@ -20,9 +20,9 @@ service / on new http:Listener(9090) {
         // }
         // return "Hello, " + name + testValue.toString();
         //
-
-        Amount val = {};
-        return val;
+        return "Hello";
+        // Amount val = {};
+        // return val;
 
     }
 
