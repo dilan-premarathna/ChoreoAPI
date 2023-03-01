@@ -4,9 +4,10 @@ import ballerina/http;
 # bound to port `9090`.
 # configurable string tempvalue = ?;
 
-listener http:Listener httpListener = check new (9090);
+listener http:Listener httpListener = check new (8090);
 
 service / on httpListener {
+    //service / on new http:Listener(9090) {
 
     # A resource for generating greetings
     # + return - string name with hello message or error
