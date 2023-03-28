@@ -26,7 +26,7 @@ service / on new http:Listener(9090) {
     # + return - string name with hello message or error
     resource function get greeting() returns string|error {
         // Send a response back to the caller.
-        if emailAlertConfig is true {
+        if booleanTest is true {
             return error("value is true");
         }
         return "Hello, " + emailAlertConfig.toString();
