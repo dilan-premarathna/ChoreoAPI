@@ -15,7 +15,9 @@ type EmailAlertConfig record {|
     string templateId;
 |};
 
-configurable boolean emailAlertConfig = ?;
+configurable EmailAlertConfig emailAlertConfig = ?;
+
+configurable boolean booleanTest = ?;
 
 service / on new http:Listener(9090) {
 
