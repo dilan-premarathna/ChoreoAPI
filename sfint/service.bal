@@ -1,5 +1,6 @@
 import ballerina/http;
 import ballerinax/salesforce;
+import sfint.configTest as _;
 
 function transform(AccountInfo accountInfo) returns NewAccount => {
     AccountName: accountInfo.Name,
