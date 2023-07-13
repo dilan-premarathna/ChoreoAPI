@@ -6,10 +6,10 @@ import ballerina/http;
     },
     interceptors: [new JwtInterceptor()]
 }
-service / on new http:Listener(9090) {
+service  / on new http:Listener(9090) {
 
     resource function get greeting() returns string|error {
 
-        return "Hello, ";
+        return "Hello, Test! ";
     }
 }
