@@ -41,5 +41,6 @@ public isolated service class JwtInterceptor {
                 }
             };
         }
+        return ctx.next();
     }
 }
