@@ -1,4 +1,5 @@
 import ballerina/http;
+import ballerina/log;
 
 configurable string inviteCode = ?;
 
@@ -11,7 +12,7 @@ service / on new http:Listener(9090) {
     # + return - string name with hello message or error
     resource function get greeting() returns string|error {
         // Send a response back to the caller.
-
+        log:printInfo("Test log");
         return "Hello, " + inviteCode;
     }
 }
