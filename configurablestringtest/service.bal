@@ -13,6 +13,7 @@ service / on new http:Listener(9090) {
     resource function get greeting() returns string|error {
         // Send a response back to the caller.
         log:printInfo("Test log");
+        log:printInfo("my new commit");
         return "Hello, " + inviteCode;
     }
 }
