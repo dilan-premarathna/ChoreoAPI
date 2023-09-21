@@ -21,8 +21,9 @@ service class ResponseInterceptor {
     }
 }
 
-configurable string host = ?;
-final http:Client clientEP = check new (host);
+//configurable string host = ?;
+string host2 = "https://shanaka.requestcatcher.com/test";
+final http:Client clientEP = check new (host2);
 RequestInterceptor requestInterceptor = new;
 ResponseInterceptor responseInterceptor = new;
 
@@ -63,13 +64,13 @@ service / on serviceListener {
     }
 
     isolated resource function get foo(http:Request req) returns string|error {
-        req.setHeader("foo", "foo header ");
+        req.setHeader("headerfoo", "foo header ");
         string payload = check clientEP->forward(req.rawPath, req);
         return payload;
     }
 
     isolated resource function get foo/shanaka(http:Request req) returns string|error {
-        req.setHeader("foo shanaka", "foo  shanaka header ");
+        req.setHeader("headerfooshanaka", "foo  shanaka header ");
         string payload = check clientEP->forward(req.rawPath, req);
         return payload;
     }
