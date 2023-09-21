@@ -61,4 +61,16 @@ service / on serviceListener {
         string payload = check clientEP->forward(req.rawPath, req);
         return payload;
     }
+
+    isolated resource function get foo(http:Request req) returns string|error {
+        req.addHeader("foo", "foo header ");
+        string payload = check clientEP->forward(req.rawPath, req);
+        return payload;
+    }
+
+    isolated resource function get foo/shanaka(http:Request req) returns string|error {
+        req.addHeader("foo shanaka", "foo  shanaka header ");
+        string payload = check clientEP->forward(req.rawPath, req);
+        return payload;
+    }
 }
