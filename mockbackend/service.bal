@@ -4,24 +4,23 @@ import ballerina/http;
 # bound to port `9090`.
 service / on new http:Listener(9090) {
 
-    resource function get \*() returns string|error {
+    resource function get \*(http:Request req) returns string|error {
         // Send a response back to the caller.
-
-        return "Hello, service invoke";
+        return "Hello, service invoke" + req.rawPath;
 
     }
 
-    resource function post \*() returns string|error {
+    resource function post \*(http:Request req) returns string|error {
         // Send a response back to the caller.
 
-        return "Hello, post resource invoke";
+        return "Hello, post resource invoke" + req.rawPath;
 
     }
 
-    resource function put \*() returns string|error {
+    resource function put \*(http:Request req) returns string|error {
         // Send a response back to the caller.
 
-        return "Hello, putg resource invoke";
+        return "Hello, putg resource invoke" + req.rawPath;
 
     }
 }
