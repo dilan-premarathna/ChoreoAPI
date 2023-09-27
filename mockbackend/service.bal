@@ -17,4 +17,11 @@ service / on new http:Listener(9090) {
         return "Hello, post resource invoke";
 
     }
+
+    resource function put \*() returns string|error {
+        // Send a response back to the caller.
+
+        return "Hello, putg resource invoke";
+
+    }
 }
