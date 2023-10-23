@@ -1,3 +1,4 @@
+import ballerina/io;
 import ballerina/http;
 
 # A service representing a network-accessible API
@@ -12,7 +13,8 @@ service / on new http:Listener(9090) {
 
     resource function post \*(http:Request req) returns json|error {
         // Send a response back to the caller.
-
+        string|error coorelationheader = req.getHeader("X-Correlation-Id");
+        io:println(coorelationheader);
         json dummyPayload = [
             [
                 1589744387,
