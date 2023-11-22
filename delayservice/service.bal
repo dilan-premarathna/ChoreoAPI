@@ -3,7 +3,7 @@ import ballerina/lang.runtime;
 
 configurable decimal sleepTime = ?;
 
-service / on new http:Listener(9091, {timeout: 300}) {
+service / on new http:Listener(9091, {timeout: 0}) {
 
     resource function post \*() returns json|error {
 
