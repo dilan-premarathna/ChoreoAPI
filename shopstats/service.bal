@@ -29,13 +29,8 @@ service / on serviceListener {
 
 
     isolated resource function get stats/v2/[string startDate]/[string endDate](http:Request req) returns json|error {
-        string|http:HeaderNotFoundError jwtheader = req.getHeader("X-Jwt-Assertion");
-        if (jwtheader is string) {
-            json payload = check clientEP->get("/stats/v2/"+startDate+"/"+endDate, {"X-Jwt-Assertion":  jwtheader});
-            return payload;
-        }
-        
-        return "Invalid JWT";
+        string payload = check clientEP->forward(req.rawPath, req);
+        return payload;
         
     }
 
