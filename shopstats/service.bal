@@ -17,16 +17,21 @@ service / on serviceListener {
         return payload;
     }
 
-    isolated resource function get stats/v2/[string startDate]() returns string|error {
-        string payload = check clientEP->get("/stats/v2/"+startDate);
-        return payload;
+    isolated resource function get stats/v2/[string startDate](http:Request req) returns string|error {
+        string|http:HeaderNotFoundError jwtheader = req.getHeader("X-Jwt-Assertion");
+        if (jwtheader is string) {
+             string payload = check clientEP->get("/stats/v2/"+startDate,{"X-Jwt-Assertion":  jwtheader});
+            return payload;
+        }
+        
+        return "Invalid JWT";
     }
 
 
     isolated resource function get stats/v2/[string startDate]/[string endDate](http:Request req) returns string|error {
         string|http:HeaderNotFoundError jwtheader = req.getHeader("X-Jwt-Assertion");
         if (jwtheader is string) {
-            string payload = check clientEP->get("/stats/v2/"+startDate+"/"+endDate, {"X-Jwt-Assertion":  "abc"});
+            string payload = check clientEP->get("/stats/v2/"+startDate+"/"+endDate, {"X-Jwt-Assertion":  jwtheader});
             return payload;
         }
         
