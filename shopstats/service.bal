@@ -12,15 +12,15 @@ listener http:Listener serviceListener = new (9090, config = {
 // Define resource functions for HTTP methods.
 service / on serviceListener {
 
-    isolated resource function get foo () returns string|error {
-        string payload = check clientEP->get("/");
+    isolated resource function get foo () returns json|error {
+        json payload = check clientEP->get("/");
         return payload;
     }
 
-    isolated resource function get stats/v2/[string startDate](http:Request req) returns string|error {
+    isolated resource function get stats/v2/[string startDate](http:Request req) returns json|error {
         string|http:HeaderNotFoundError jwtheader = req.getHeader("X-Jwt-Assertion");
         if (jwtheader is string) {
-             string payload = check clientEP->get("/stats/v2/"+startDate,{"X-Jwt-Assertion":  jwtheader});
+            json payload = check clientEP->get("/stats/v2/"+startDate,{"X-Jwt-Assertion":  jwtheader});
             return payload;
         }
         
@@ -28,10 +28,10 @@ service / on serviceListener {
     }
 
 
-    isolated resource function get stats/v2/[string startDate]/[string endDate](http:Request req) returns string|error {
+    isolated resource function get stats/v2/[string startDate]/[string endDate](http:Request req) returns json|error {
         string|http:HeaderNotFoundError jwtheader = req.getHeader("X-Jwt-Assertion");
         if (jwtheader is string) {
-            string payload = check clientEP->get("/stats/v2/"+startDate+"/"+endDate, {"X-Jwt-Assertion":  jwtheader});
+            json payload = check clientEP->get("/stats/v2/"+startDate+"/"+endDate, {"X-Jwt-Assertion":  jwtheader});
             return payload;
         }
         
